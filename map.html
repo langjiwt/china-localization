@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+        body, html {width: 100%;height: 100%;margin:0;font-family:"微软雅黑";}
+        #allmap{width:100%;height:400px;}
+        p{margin-left:5px; font-size:14px;}
+    </style>
+    <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=l30utNVbhphzRTx7vGTilte30rGHTtcL"></script>
+    <title>河北乐恒节能设备有限公司</title>
+</head>
+<body>
+<div id="allmap"></div>
+</body>
+</html>
+<script type="text/javascript">
+    // 百度地图API功能
+    var sContent =
+        "<h4 style='margin:0 0 5px 0;padding:0.2em 0'>河北乐恒节能设备有限公司</h4>" +
+        "<p><strong>地址：</strong>河北省大厂潮白河工业园区工业二路东首</p>" +
+        "</div>";
+    var map = new BMap.Map("allmap");
+    var point = new BMap.Point(116.92057,39.924706);
+    var marker = new BMap.Marker(point);
+    var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
+    map.centerAndZoom(point, 11);
+    map.addOverlay(marker);
+
+    marker.openInfoWindow(infoWindow);
+    marker.addEventListener("click", function(){
+        this.openInfoWindow(infoWindow);
+        //图片加载完毕重绘infowindow
+        document.getElementById('imgDemo').onload = function (){
+            infoWindow.redraw();   //防止在网速较慢，图片未加载时，生成的信息框高度比图片的总高度小，导致图片部分被隐藏
+        }
+    });
+    function enableScroll(e) {
+        map.enableScrollWheelZoom();   //启用滚轮放大缩小，默认禁用
+        map.enableContinuousZoom();    //启用地图惯性拖拽，默认禁用
+    }
+    map.addEventListener('click',enableScroll);
+</script>
