@@ -1,3 +1,3 @@
 function test(){
-	alert("ok");
+	alert("js file loaded success");
 }
